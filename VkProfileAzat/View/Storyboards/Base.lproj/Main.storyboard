@@ -389,7 +389,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iOT-hB-L0o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2096" y="702"/>
+            <point key="canvasLocation" x="2093" y="630"/>
         </scene>
         <!--Subs Table View Controller-->
         <scene sceneID="XxQ-qG-zjh">
@@ -407,7 +407,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="foc-07-DZ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2098" y="-576"/>
+            <point key="canvasLocation" x="2094" y="-266"/>
         </scene>
         <!--Новая запись-->
         <scene sceneID="9rg-Aj-4lL">
@@ -478,7 +478,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pzx-cq-sRE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-621" y="262"/>
+            <point key="canvasLocation" x="-414" y="262"/>
         </scene>
         <!--Information Page View Controller-->
         <scene sceneID="1aa-ei-kEh">

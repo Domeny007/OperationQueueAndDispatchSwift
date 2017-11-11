@@ -1,17 +1,19 @@
-//
-//  LoginViewController.swift
-//  VkProfileAzat
-//
-//  Created by Азат Алекбаев on 30.10.2017.
-//  Copyright © 2017 Азат Алекбаев. All rights reserved.
-//
-
 import UIKit
 
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailOrNumberTextField: UITextField!
+    let wrongString = "Wrong login or password"
+    let emailsKey = "User emails"
+    let passwordKey = "User password"
+    let numberKey = "User number"
+    let enterIdentefier = "EnterIdentefier"
+    let alertTitle = "Alert"
+    let okTitle = "Ok"
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,24 +29,24 @@ class LoginViewController: UIViewController {
         let userEmailOrNumber = emailOrNumberTextField.text
         let userPassword = passwordTextField.text
         
-        let userEmailStored = UserDefaults.standard.string(forKey: "User emails")
-        let userPasswordStored = UserDefaults.standard.string(forKey: "User password")
-        let userNumberStored = UserDefaults.standard.string(forKey: "User number")
+        let userEmailStored = UserDefaults.standard.string(forKey: emailsKey)
+        let userPasswordStored = UserDefaults.standard.string(forKey: passwordKey)
+        let userNumberStored = UserDefaults.standard.string(forKey: numberKey)
         
         if userEmailOrNumber == userEmailStored ||  userEmailOrNumber == userNumberStored {
             if userPassword == userPasswordStored {
-            performSegue(withIdentifier: "EnterIdentefier", sender: nil)
+            performSegue(withIdentifier: enterIdentefier, sender: nil)
             } else {
-            displayMyAlertMessage(userMessage: "Wrong login or password")
+            displayMyAlertMessage(userMessage: wrongString)
             }
         } else {
-            displayMyAlertMessage(userMessage: "Wrong login or password")
+            displayMyAlertMessage(userMessage: wrongString)
         }
         
     }
     func displayMyAlertMessage(userMessage : String) {
-        let myAlert = UIAlertController(title: "Alert", message: userMessage, preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        let myAlert = UIAlertController(title: alertTitle, message: userMessage, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: okTitle, style: .default, handler: nil)
         myAlert.addAction(okButton)
         present(myAlert, animated: true, completion: nil)
     }

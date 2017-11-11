@@ -79,7 +79,7 @@ class InfoTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createEverything()
+        createUserInformation()
         registratingWithCells()
         workingWithViewOnTop()
         createRefreshing()
@@ -120,7 +120,7 @@ class InfoTableViewController: UITableViewController {
         tableView.register(threeCellsNib, forCellReuseIdentifier: threeCellsIdentefer)
     }
     
-    func createEverything() {
+    func createUserInformation() {
         // MARK:- create status
         let status = CoreModelOfStatus(status: "\(statusArray[Int(arc4random_uniform(UInt32(statusArray.count)))])")
         allInfo.append(status)
@@ -250,7 +250,7 @@ class InfoTableViewController: UITableViewController {
     
     @objc func RefreshControl(_ refreshControl: UIRefreshControl) {
         allInfo.removeAll()
-        createEverything()
+        createUserInformation()
         self.tableView.reloadData()
         refreshControl.endRefreshing()
     }

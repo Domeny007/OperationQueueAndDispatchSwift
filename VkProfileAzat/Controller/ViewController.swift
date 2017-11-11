@@ -34,6 +34,8 @@ class ViewController: UIViewController,ActionButtonProtocol,NewsTransferProtocol
     
     @IBOutlet weak var mainTableView: UITableView!
     
+    let firstInt = 1
+    
     let borderWidth = 0.5
     let sizeNum:CGFloat = 12
     let pixString = " фотографий"
@@ -74,6 +76,9 @@ class ViewController: UIViewController,ActionButtonProtocol,NewsTransferProtocol
     let buttonsNamesArray: [String] = ["друзей","подписчик","групп","фото","видео","аудио","подарков","файл"]
     
     let jpgExtension = ".JPG"
+    
+    let subsIdentefier = "SubsIdentefier"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -136,7 +141,7 @@ class ViewController: UIViewController,ActionButtonProtocol,NewsTransferProtocol
     }
     
     //    MARK: NewsTransfeerProtocol
-    func createNews(with someNews: News) {
+    func createNews() {
         WorkWithNews.instance.asyncGetAllNews { [weak self] (news) in
             guard let strongSelf = self else { return }
             strongSelf.news = news
@@ -180,11 +185,9 @@ class ViewController: UIViewController,ActionButtonProtocol,NewsTransferProtocol
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: wallCellIdentefier, for: indexPath) as! WallTableViewCell
-        avatar = generalImage.image!
-        name = myNameLabel.text!
         
+        guard let avatar = generalImage.image, let name = myNameLabel.text else {return cell}
         let user = User(avatar: avatar , name: name, ageAndeCity: emptyString)
-        
         cell.prepareCell(with: news[indexPath.row],and: user)
         return cell
     }
@@ -197,7 +200,7 @@ class ViewController: UIViewController,ActionButtonProtocol,NewsTransferProtocol
             return photoArray.count
         }
         if collectionView == collectionViewForMainButtons {
-            return 8
+            return buttonsNamesArray.count
         }
         return 1
     }
@@ -216,14 +219,14 @@ class ViewController: UIViewController,ActionButtonProtocol,NewsTransferProtocol
         return UICollectionViewCell()
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row == 1 && collectionView == collectionViewForMainButtons {
-            performSegue(withIdentifier: "SubsIdentefier", sender: nil)
+        if indexPath.row == firstInt && collectionView == collectionViewForMainButtons {
+            performSegue(withIdentifier: subsIdentefier , sender: nil)
         }
         
     }
     @objc func RefreshControl(_ refreshControl: UIRefreshControl) {
         news = WorkWithNews.instance.syncGetAllNews()
-        self.tableView.reloadData()
+        tableView.reloadData()
         refreshControl.endRefreshing()
     }
     func createRefreshing() {

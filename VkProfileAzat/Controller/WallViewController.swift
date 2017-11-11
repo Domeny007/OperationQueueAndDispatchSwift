@@ -13,7 +13,7 @@ class WallViewController: UIViewController,UITextViewDelegate {
         WorkWithNews.instance.asyncSaveNews(with: news) { [weak self](saved) in
             guard let strongSelf = self else { return }
             if saved == true {
-                strongSelf.newsTransferDelegate?.createNews(with: news)
+                strongSelf.newsTransferDelegate?.createNews()
             }
         }
        self.navigationController?.popToRootViewController(animated: true)
