@@ -79,6 +79,9 @@ class ViewController: UIViewController,ActionButtonProtocol,NewsTransferProtocol
     
     let subsIdentefier = "SubsIdentefier"
     
+    var createdNewsArray:[News] = []
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +89,7 @@ class ViewController: UIViewController,ActionButtonProtocol,NewsTransferProtocol
         registerNib()
         createMainUser()
         createWallNews()
+        saveNews(with: createdNewsArray)
         createCustomWeightOfCell()
         registerCustomCollectionViewCell()
         createRefreshing()
@@ -100,13 +104,15 @@ class ViewController: UIViewController,ActionButtonProtocol,NewsTransferProtocol
         let wallNews1 = News(wallText: wallText1, likeNumber: "10", commentNumber: "20", repostNumber: "30", dataString: "18 июл 2017 ", wallImage: #imageLiteral(resourceName: "Image3"))
         let wallNews2 = News(wallText: wallText2, likeNumber: "1", commentNumber: "100", repostNumber: "110", dataString: "2 фев 1998", wallImage: #imageLiteral(resourceName: "Image2"))
         let wallNews3 = News(wallText: wallText3, likeNumber: "", commentNumber: "1000", repostNumber: "1", dataString: "19 сен 2018", wallImage: #imageLiteral(resourceName: "Image1"))
-        saveNews(with: wallNews1)
-        saveNews(with: wallNews2)
-        saveNews(with: wallNews3)
+        createdNewsArray.append(wallNews1)
+        createdNewsArray.append(wallNews2)
+        createdNewsArray.append(wallNews3)
     }
     
-    func saveNews(with new: News) {
-        WorkWithNews.instance.syncSaveNews(with: new)
+    func saveNews(with news: [News]) {
+        for i in 0..<news.count {
+        WorkWithNews.instance.syncSaveNews(with: news[i])
+        }
     }
     //    MARK: ActionButtonProtocol
     func didPressedExtraButton() {
